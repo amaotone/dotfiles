@@ -12,12 +12,12 @@ usage() {
   name=`basename $0`
   cat <<EOF
 Usage:
-  $name [arguments] [command]
+  $name [command] [option]
 
 Commands:
   deploy
 
-Arguments:
+Options:
   -f $(tput setaf 1)** warning **$(tput sgr0) Overwrite dotfiles.
   -h Print help (this message)
 EOF
@@ -81,3 +81,4 @@ case $command in
 esac
 
 exit 0
+
