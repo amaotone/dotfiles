@@ -49,7 +49,7 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
     rm -f ${HOME}/dotfiles.tar.gz
   fi
 
-  echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
+  echo $(tput setaf 2)Download dotfiles complete! ✔︎$(tput sgr0)
 fi
 
 link_files() {
@@ -65,7 +65,7 @@ link_files() {
     fi
   done
 
-  echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
+  echo $(tput setaf 2)Deploy dotfiles complete! ✔︎$(tput sgr0)
 }
 
 command=$1
