@@ -14,10 +14,15 @@ setopt prompt_subst
 #------------------------------
 # History
 #------------------------------
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
 setopt share_history
 setopt hist_ignore_space
 setopt hist_ignore_dups
 setopt hist_save_no_dups
+
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -45,21 +50,11 @@ autoload -Uz compinit
 compinit
 
 #------------------------------
-# History
-#------------------------------
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-#------------------------------
 # Prompt
 #------------------------------
 PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
 %# "
 
-#------------------------------
-# VCS
-#------------------------------
 autoload -Uz vcs_info
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
