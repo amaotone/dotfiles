@@ -15,7 +15,6 @@ EOF
   exit 1
 }
 
-OPTIND=1
 while getopts fh OPT
 do
   case ${OPT} in
@@ -23,7 +22,6 @@ do
     h) usage ;;
   esac
 done
-shift $(($OPTIND - 1))
 
 for f in .??*
 do
@@ -37,4 +35,4 @@ do
   fi
 done
 
-echo $(tput setaf 2)✔ Dotfiles are deployed.$(tput sgr0)
+echo "$(tput setaf 2)Dotfiles are deployed! ✔$(tput sgr0)"
