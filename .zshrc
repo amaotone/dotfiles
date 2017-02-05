@@ -9,9 +9,24 @@ colors
 setopt print_eight_bit
 setopt interactive_comments
 setopt auto_cd
-setopt hist_ignore_space
-setopt share_history
 setopt prompt_subst
+
+#------------------------------
+# History
+#------------------------------
+setopt share_history
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_save_no_dups
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+autoload -Uz smart-insert-last-word
+zstyle :insert-last-word match '*([[:alpha:]/\]?|?[[:alpha:]/\])*'
+zle -N insert-last-word smart-insert-last-word
 
 #------------------------------
 # Alias
