@@ -2,16 +2,22 @@ $EDITOR = '/usr/local/bin/vim'
 $VISUAL = '/usr/local/bin/vim'
 $VI_MODE = False
 $IGNOREEOF = True
-$INDENT = "    "
 $CASE_SENSITIVE_COMPLETIONS = False
 $HISTCONTROL = "ignoredups"
 $XONSH_AUTOPAIR = True
 $AUTO_CD = True
-$XONSH_SHOW_TRACEBACK = True
-$SUPPRESS_BRANCH_TIMEOUT_MESSAGE = True
-$UPDATE_COMPLETIONS_ON_KEYPRESS = True
+$COLOR_INPUT = True
+$COLOR_RESULTS = True
+$INDENT = "    "
+$MULTILINE_PROMPT = "."
 
-$PROMPT = "{INTENSE_YELLOW}[ {cwd} ] {GREEN}$ "
-$BOTTOM_TOOLBAR = "{BACKGROUND_WHITE}{BLACK}{user}@{hostname}"
-$RIGHT_PROMPT = "{curr_branch}"
-$COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
+# 補完
+$COMPLETIONS_BRACKET = True
+$COMPLETIONS_CONFIRM = False
+$SUBSEQUENCE_PATH_COMPLETION = True
+$FUZZY_PATH_COMPLETION = True
+
+# プロンプトの設定
+$PROMPT = "{INTENSE_GREEN}[ {user}@{hostname} ] {WHITE}{cwd}\n$ "
+$BOTTOM_TOOLBAR = "" 
+$RIGHT_PROMPT = "{gitstatus: [ {} ]}"
