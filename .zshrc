@@ -41,7 +41,23 @@ alias la='ls -A'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias grep='grep --color'
+alias df='df -h'
+alias ps='ps --sort=start_time'
 alias mkdir='mkdir -p'
+alias btc='ssh -i ~/.ssh/id_rsa.gcp amaotone@35.226.209.126'
+alias c='g++ -std=c++14 -Wall -g -fsanitize=undefined -D_GLIBCXX_DEBUG'
+alias fp='(){cat $1 | pbcopy}'
+alias git='hub'
+alias zshrc='vi ~/.zshrc'
+alias sant='cd ~/dev/kaggle/santander_value'
+alias od='rm -rf test;oj d'
+alias ru='rm -f a.out;rustc -o a.out $1'
+function rut(){
+    rm -f a.out
+    rustc $1 -o a.out || return 1
+    oj t -i -c ./a.out
+}
 
 #------------------------------
 # Completion
@@ -69,6 +85,7 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 #------------------------------
 if type pyenv > /dev/null 2>&1; then
     eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -90,4 +107,32 @@ if [ -e "${HOME}/.zplug" ]; then
 	fi
 	zplug load 
 fi
+
+eval "$(rbenv init -)"
+
+#-----------------------------
+# Google Cloud Platform
+#-----------------------------
+export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/path.zsh.inc"
+export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/completion.zsh.inc"
+export CLOUDSDK_PYTHON=$(which python2)
+
+# Golang
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/dev/atcoder
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/amane/Downloads/gcloud-sdk/path.zsh.inc' ]; then source '/Users/amane/Downloads/gcloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc' ]; then source '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc'; fi
+
+export PYTHONPATH="$PYTHONPATH:$HOME/dev/kaggle/spica"
+kaggle_python(){
+    docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it kaggle/python python "$@"  
+}
+kaggle_jupyter() {
+    docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
+}
 
