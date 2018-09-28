@@ -3,21 +3,24 @@ $VISUAL = '/usr/local/bin/vim'
 $VI_MODE = False
 $IGNOREEOF = True
 $CASE_SENSITIVE_COMPLETIONS = False
-$HISTCONTROL = "ignoredups"
+$HISTCONTROL = 'ignoredups'
 $XONSH_AUTOPAIR = True
 $AUTO_CD = True
 $COLOR_INPUT = True
 $COLOR_RESULTS = True
-$INDENT = "    "
-$MULTILINE_PROMPT = "."
+$INDENT = '    '
+$MULTILINE_PROMPT = '.'
 
-# 補完
+# completion
 $COMPLETIONS_BRACKET = True
 $COMPLETIONS_CONFIRM = False
 $SUBSEQUENCE_PATH_COMPLETION = True
 $FUZZY_PATH_COMPLETION = True
 
-# プロンプトの設定
-$PROMPT = "{INTENSE_GREEN}[ {user}@{hostname} ] {WHITE}{cwd}\n$ "
-$BOTTOM_TOOLBAR = "" 
-$RIGHT_PROMPT = "{gitstatus: [ {} ]}"
+# prompt 
+$PROMPT = '{INTENSE_GREEN}[ {user}@{hostname} ] {WHITE}{cwd}\n$ '
+$BOTTOM_TOOLBAR = '' 
+$RIGHT_PROMPT = '{gitstatus: [ {} ]}'
+
+# alias
+aliases['la'] = 'ls -latr'
