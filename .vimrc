@@ -1,4 +1,3 @@
-" vimrc
 " Author: Amane Suzuki
 
 syntax on
@@ -45,6 +44,17 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " 保存時に行末の空白を削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" ===== キーバインド =====
+" 方向キーの無効化
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+
 " ウィンドウ間の移動を楽にする
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -84,4 +94,24 @@ inoremap <silent> <c-[> <esc>
 call plug#begin('~/.vim/plugged')
 Plug 'Shougo/unite.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'machakann/vim-sandwich'
+Plug 'w0rp/ale'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mattn/emmet-vim'
 call plug#end()
+
+
+" airline
+" let g:airline_theme = 'zenburn'
+let laststatus=2
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+
