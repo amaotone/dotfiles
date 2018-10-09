@@ -14,8 +14,8 @@ set cindent
 set wildmenu
 set title
 set ruler
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set nobackup
 set noswapfile
@@ -44,7 +44,6 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " 保存時に行末の空白を削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" ===== キーバインド =====
 " 方向キーの無効化
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -55,7 +54,7 @@ inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 
-" ウィンドウ間の移動を楽にする
+" ウィンドウ間の移動
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -63,6 +62,7 @@ nnoremap <C-h> <C-w>h
 
 " バックスペースでの削除を有効に
 set backspace=indent,eol,start
+
 " auto update
 set autoread
 
@@ -92,6 +92,9 @@ inoremap <silent> <c-[> <esc>
 " プラグイン(vim-plug)
 "========================================
 call plug#begin('~/.vim/plugged')
+Plug 'romainl/Apprentice', {'do': 'cp colors/* ~/.vim/colors/'}
+Plug 'editorconfig/editorconfig-vim'
+
 Plug 'Shougo/unite.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
@@ -102,11 +105,14 @@ Plug 'w0rp/ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
+" theme
+colorscheme Apprentice
 
 " airline
-" let g:airline_theme = 'zenburn'
+let g:airline_theme = 'base16'
 let laststatus=2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -114,4 +120,7 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
+
+" nerdtree
+nnoremap <silent><C-n> :NERDTreeToggle<CR>
 
