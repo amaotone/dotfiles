@@ -111,9 +111,9 @@ if [ -e "${HOME}/.zplug" ]; then
 	zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 	if ! zplug check; then
-		zplug install 
+		zplug install
 	fi
-	zplug load 
+	zplug load
 fi
 
 eval "$(rbenv init -)"
@@ -126,7 +126,7 @@ export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/completion.zsh.inc"
 export CLOUDSDK_PYTHON=$(which python2)
 
 # Golang
-export GOPATH="$HOME/dev"
+export GOPATH="$HOME"
 export PATH="$GOPATH/bin:$PATH"
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/dev/atcoder
 
@@ -138,7 +138,7 @@ if [ -f '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc' ]; then source '/
 
 export PYTHONPATH="$PYTHONPATH:$HOME/dev/kaggle/spica"
 kaggle_python(){
-    docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it kaggle/python python "$@"  
+    docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it kaggle/python python "$@"
 }
 kaggle_jupyter() {
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
