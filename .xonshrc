@@ -11,16 +11,26 @@ $COLOR_RESULTS = True
 $INDENT = '    '
 $MULTILINE_PROMPT = '.'
 
-# completion
 $COMPLETIONS_BRACKET = True
-$COMPLETIONS_CONFIRM = False
+$COMPLETIONS_CONFIRM = True  
 $SUBSEQUENCE_PATH_COMPLETION = True
 $FUZZY_PATH_COMPLETION = True
 
 # prompt 
 $PROMPT = '{INTENSE_GREEN}[ {user}@{hostname} ] {WHITE}{cwd}\n$ '
+#$PROMPT = '{INTENSE_GREEN}[ {cwd} ] {WHITE}$ '
 $BOTTOM_TOOLBAR = '' 
 $RIGHT_PROMPT = '{gitstatus: [ {} ]}'
 
 # alias
 aliases['la'] = 'ls -latr'
+aliases['dc'] = 'docker-compose'
+aliases['vx'] = 'vim ~/.xonshrc'
+aliases['vv'] = 'vim ~/.vimrc'
+aliases['vz'] = 'vim ~/.zshrc'
+
+# gc
+import gc
+def _gc_collect(args, stdin=None):
+    gc.collect()
+aliases['gc'] = _gc_collect

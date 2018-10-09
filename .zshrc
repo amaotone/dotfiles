@@ -53,6 +53,14 @@ alias zshrc='vi ~/.zshrc'
 alias sant='cd ~/dev/kaggle/santander_value'
 alias od='rm -rf test;oj d'
 alias ru='rm -f a.out;rustc -o a.out $1'
+alias t='todolist'
+alias ta='todolist a'
+alias tl='todolist l'
+alias tlp='todolist l group by project'
+alias tlc='todolist l group by context'
+alias tc='todolist c'
+alias dc='docker-compose'
+
 function rut(){
     rm -f a.out
     rustc $1 -o a.out || return 1
@@ -118,7 +126,7 @@ export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/completion.zsh.inc"
 export CLOUDSDK_PYTHON=$(which python2)
 
 # Golang
-export GOPATH="$HOME/go"
+export GOPATH="$HOME/dev"
 export PATH="$GOPATH/bin:$PATH"
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/dev/atcoder
 
@@ -135,4 +143,6 @@ kaggle_python(){
 kaggle_jupyter() {
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
 }
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
