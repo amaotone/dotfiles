@@ -23,6 +23,7 @@ set hidden
 set scrolloff=3
 set showcmd
 set history=5000
+set backupcopy=yes
 set vb t_vb=
 set novisualbell
 inoremap jk <Esc>
@@ -113,10 +114,15 @@ Plug 'mattn/emmet-vim'
 Plug 'fatih/vim-go'
 Plug 'cohama/lexima.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
 call plug#end()
 
 " theme
 colorscheme Apprentice
+
+" ale
+let g:ale_lint_on_text_changed = 0
 
 " airline
 let g:airline_powerline_fonts = 1
@@ -133,3 +139,23 @@ let g:airline#extensions#tabline#enabled = 1
 " nerdtree
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
 
+" go
+let g:go_def_mapping_enabled = 0
+let g:go_fmt_autosave = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+
+
+" unite
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" sourcesを「今開いているファイルのディレクトリ」とする
+noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
