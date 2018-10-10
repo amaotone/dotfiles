@@ -42,6 +42,10 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 
+" 置換
+nnoremap gs  :<C-u>%s///g<Left><Left><Left>
+vnoremap gs  :s///g<Left><Left><Left>
+
 " 保存時に行末の空白を削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
@@ -61,9 +65,21 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-" バッファの移動
+" バッファ
+set hidden
+set nosol   "buffer間をカーソル位置を保存して移動
 nnoremap <Space>bp :bp<CR>
 nnoremap <Space>bn :bn<CR>
+nnoremap <Space>bb :b#<CR>
+nnoremap <Space>bf :bf<CR>
+nnoremap <Space>bm :call OpenMiddleBuffer()<CR>
+nnoremap <Space>bl :bl<CR>
+nnoremap <Space>bd :bp<bar>bd#<CR>
+
+function OpenMiddleBuffer()
+        let ls = map(split(execute(":ls"), "\n"), "get(split(v:val), 0)")
+            execute(":b" . str2nr(get(ls, (len(ls)-1)/2)))
+endfunction
 
 " バックスペースでの削除を有効に
 set backspace=indent,eol,start
@@ -98,6 +114,7 @@ inoremap <silent> <c-[> <esc>
 "========================================
 call plug#begin('~/.vim/plugged')
 Plug 'romainl/Apprentice', {'do': 'cp colors/* ~/.vim/colors/'}
+Plug 'w0ng/vim-hybrid', {'do': 'cp colors/* ~/.vim/colors/'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -119,7 +136,7 @@ Plug 'Shougo/neomru.vim'
 call plug#end()
 
 " theme
-colorscheme Apprentice
+colorscheme hybrid
 
 " ale
 let g:ale_lint_on_text_changed = 0
