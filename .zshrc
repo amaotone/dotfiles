@@ -41,6 +41,9 @@ alias la='ls -A'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias vv='vim ~/.vimrc'
+alias vz='vim ~/.zshrc'
+alias vt='vim ~/.tmux.conf'
 alias grep='grep --color'
 alias df='df -h'
 alias ps='ps --sort=start_time'
@@ -146,3 +149,5 @@ kaggle_jupyter() {
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

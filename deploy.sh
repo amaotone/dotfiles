@@ -25,7 +25,7 @@ done
 
 for f in .??*
 do
-  [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
+  [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -rf ${HOME}/${f}
   if [ ! -e ${HOME}/${f} ]; then
     # ignore files
     [[ ${f} = ".git" ]] && continue

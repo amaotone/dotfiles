@@ -1,0 +1,31 @@
+{
+	"segments": {
+        "left": [
+            {
+                "function": "powerline.segments.common.net.external_ip"
+            },
+            {
+                "function": "powerline.segments.common.env.virtualenv"
+            }
+        ],
+		"right": [
+            {
+                "function": "powerline.segments.common.bat.battery"
+            },
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.net.hostname"
+			}
+		]
+	}
+}

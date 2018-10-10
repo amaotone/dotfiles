@@ -60,6 +60,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
+" バッファの移動
+nnoremap <Space>bp :bp<CR>
+nnoremap <Space>bn :bn<CR>
+
 " バックスペースでの削除を有効に
 set backspace=indent,eol,start
 
@@ -94,11 +98,12 @@ inoremap <silent> <c-[> <esc>
 call plug#begin('~/.vim/plugged')
 Plug 'romainl/Apprentice', {'do': 'cp colors/* ~/.vim/colors/'}
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'Shougo/unite.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale'
@@ -106,13 +111,16 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'fatih/vim-go'
+Plug 'cohama/lexima.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " theme
 colorscheme Apprentice
 
 " airline
-let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'bubblegum'
 let laststatus=2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -120,6 +128,7 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " nerdtree
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
