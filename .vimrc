@@ -8,6 +8,7 @@ scriptencoding utf-8
 set fileencodings=utf-8
 
 " 基本設定
+set t_Co=256
 set number
 set autoindent
 set cindent
@@ -72,14 +73,8 @@ nnoremap <Space>bp :bp<CR>
 nnoremap <Space>bn :bn<CR>
 nnoremap <Space>bb :b#<CR>
 nnoremap <Space>bf :bf<CR>
-nnoremap <Space>bm :call OpenMiddleBuffer()<CR>
 nnoremap <Space>bl :bl<CR>
 nnoremap <Space>bd :bp<bar>bd#<CR>
-
-function OpenMiddleBuffer()
-        let ls = map(split(execute(":ls"), "\n"), "get(split(v:val), 0)")
-            execute(":b" . str2nr(get(ls, (len(ls)-1)/2)))
-endfunction
 
 " バックスペースでの削除を有効に
 set backspace=indent,eol,start
@@ -113,30 +108,35 @@ inoremap <silent> <c-[> <esc>
 " プラグイン(vim-plug)
 "========================================
 call plug#begin('~/.vim/plugged')
+" カラースキーム
 Plug 'romainl/Apprentice', {'do': 'cp colors/* ~/.vim/colors/'}
+Plug 'morhetz/gruvbox', {'do': 'cp colors/* ~/.vim/colors/'}
 Plug 'w0ng/vim-hybrid', {'do': 'cp colors/* ~/.vim/colors/'}
+
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'machakann/vim-sandwich'
 Plug 'w0rp/ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
-Plug 'fatih/vim-go'
 Plug 'cohama/lexima.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
+" golang
+Plug 'fatih/vim-go'
+" python
+Plug 'davidhalter/jedi-vim'
+Plug 'klen/python-mode'
+Plug 'nvie/vim-flake8'
+Plug 'hynek/vim-python-pep8-indent'
 call plug#end()
 
 " theme
-colorscheme hybrid
+colorscheme gruvbox
 
 " ale
 let g:ale_lint_on_text_changed = 0
@@ -156,6 +156,13 @@ let g:airline#extensions#tabline#enabled = 1
 " nerdtree
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
 
+" python
+let g:pymode_python = 'python3'
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#force_by_python = 3
+let g:jedi#popup_select_first = 0
+autocmd FileType python setlocal completeopt-=preview
+
 " go
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
@@ -163,7 +170,6 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-
 
 " unite
 " 入力モードで開始する
@@ -176,3 +182,4 @@ noremap <C-N> :Unite -buffer-name=file file<CR>
 noremap <C-Z> :Unite file_mru<CR>
 " sourcesを「今開いているファイルのディレクトリ」とする
 noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+

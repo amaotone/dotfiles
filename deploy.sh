@@ -30,9 +30,12 @@ do
     # ignore files
     [[ ${f} = ".git" ]] && continue
     [[ ${f} = ".gitignore" ]] && continue
+    [[ ${f} = ".vimrc" ]] && continue
 
     ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
   fi
 done
+
+ln -snfv ${DOT_DIRECTORY}/.config/nvim/init.vim ${HOME}/.vimrc
 
 echo "$(tput setaf 2)Dotfiles are deployed! ✔$(tput sgr0)"
