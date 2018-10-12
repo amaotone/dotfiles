@@ -45,4 +45,16 @@ hook_add = '''
     let g:go_highlight_methods = 1
 '''
 
+[[plugins]]
+repo = 'cohama/lexima.vim'
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+    nnoremap <Space>gs :<C-u>Gstatus<Enter>
+    nnoremap <Space>gl :<C-u>Glog<Enter>
+    nnoremap <Space>ga :<C-u>Gwrite<Enter>
+    nnoremap <Space>gc :<C-u>Gcommit<Enter>
+    nnoremap <Space>gd :<C-u>Gdiff<Enter>
+    nnoremap <Space>gb :<C-u>Gblame<Enter>
+'''
