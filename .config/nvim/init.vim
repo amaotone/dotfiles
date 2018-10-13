@@ -90,7 +90,8 @@ inoremap <silent> <esc> <esc>
 inoremap <silent> <c-[> <esc>
 
 " ----- dein settings start -----
-let g:python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 if has('nvim')
 if &compatible
   set nocompatible
@@ -113,8 +114,8 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
-  call dein#load_toml('~/.config/nvim/dein_python.toml', {'lazy': 1, 'on_ft': 'python'})
-  call dein#load_toml('~/.config/nvim/dein_go.toml', {'lazy': 1, 'on_ft': 'go'})
+  call dein#load_toml('~/.config/nvim/dein_python.toml', {'on_ft': 'python'})
+  call dein#load_toml('~/.config/nvim/dein_go.toml', {'on_ft': 'go'})
   call dein#end()
   call dein#save_state()
 endif

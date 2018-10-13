@@ -14,20 +14,20 @@ repo = 'editorconfig/editorconfig-vim'
 repo = 'vim-airline/vim-airline'
 depends = ['vim-airline-themes']
 hook_add = '''
-    let g:airline_powerline_fonts = 1
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#wordcount#enabled = 0
-    let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-    let g:airline#extensions#default#section_truncate_width = {}
-    let g:airline#extensions#whitespace#enabled = 1
-    let laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+let laststatus=2
 '''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 hook_add = '''
-    let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'bubblegum'
 '''
 
 [[plugins]]
@@ -40,10 +40,11 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-    nnoremap <Space>gs :<C-u>Gstatus<Enter>
-    nnoremap <Space>gl :<C-u>Glog<Enter>
-    nnoremap <Space>ga :<C-u>Gwrite<Enter>
-    nnoremap <Space>gc :<C-u>Gcommit<Enter>
-    nnoremap <Space>gd :<C-u>Gdiff<Enter>
-    nnoremap <Space>gb :<C-u>Gblame<Enter>
+nnoremap <Space>gs :<C-u>Gstatus<Enter>
+nnoremap <Space>gl :<C-u>Glog<Enter>
+nnoremap <Space>ga :<C-u>Gwrite<Enter>
+nnoremap <Space>gc :<C-u>Gcommit<Enter>
+nnoremap <Space>gd :<C-u>Gdiff<Enter>
+nnoremap <Space>gb :<C-u>Gblame<Enter>
 '''
+
