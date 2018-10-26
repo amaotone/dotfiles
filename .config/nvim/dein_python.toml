@@ -1,12 +1,44 @@
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-depends = ['deoplete.nvim']
 on_ft = 'python'
-hook_source = '''
-let g:deoplete#sources#jedi#python_path = $HOME . '/.pyenv/shims/python'
+depends = ['deoplete.nvim']
+hook_add = '''
+let g:deoplete#sources#jedi#server_timeout = 60
+autocmd FileType python setlocal completeopt-=preview
 '''
 
 [[plugins]]
 repo = 'jmcantrell/vim-virtualenv'
 on_ft = 'python'
 
+[[plugins]]
+repo = 'lambdalisue/vim-pyenv'
+on_ft = 'python'
+depends = ['zchee/deoplete-jedi']
+
+[[plugins]]
+repo = 'tell-k/vim-autopep8'
+on_ft = 'python'
+hook_add = '''
+function! Preserve(command)
+    let search = @/
+    let cursor_position = getpos('.')
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    execute a:command
+    let @/ = search
+    call setpos('.', window_position)
+    normal! zt
+    call setpos('.', cursor_position)
+endfunction
+function! Autopep8()
+    call Preserve(':silent %!autopep8 --ignore=E501 -')
+endfunction
+nnoremap <S-f> :call Autopep8()<CR>
+autocmd BufWrite *.{py} :call Autopep8()
+'''
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = 'python'

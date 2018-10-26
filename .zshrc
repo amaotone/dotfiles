@@ -67,6 +67,7 @@ alias tlp='todolist l group by project'
 alias tlc='todolist l group by context'
 alias tc='todolist c'
 alias dc='docker-compose'
+eval $(thefuck --alias)
 
 function rut(){
     rm -f a.out

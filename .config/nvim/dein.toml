@@ -35,6 +35,10 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -73,8 +77,4 @@ endif
 
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 '''
-
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
