@@ -3,6 +3,7 @@ repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 depends = ['deoplete.nvim']
 hook_add = '''
+let g:deoplete#sources#jedi#python_path = $HOME . "/.pyenv/shims/python"
 let g:deoplete#sources#jedi#server_timeout = 60
 autocmd FileType python setlocal completeopt-=preview
 '''

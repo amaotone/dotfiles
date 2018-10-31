@@ -148,10 +148,10 @@ if [ -f '/Users/amane/Downloads/gcloud-sdk/path.zsh.inc' ]; then source '/Users/
 if [ -f '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc' ]; then source '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc'; fi
 
 export PYTHONPATH="$PYTHONPATH:$HOME/dev/kaggle/spica"
-kaggle_python(){
+kp(){
     docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it kaggle/python python "$@"
 }
-kaggle_jupyter() {
+kj() {
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
 }
 

@@ -10,15 +10,12 @@ let g:deoplete#enable_camel_case = 0
 let g:deoplete#ignore_case = 1
 let g:deoplete#smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 20
+let g:deoplete#max_list = 50
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
 \ neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 on_i = 1
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'w0rp/ale'

@@ -78,3 +78,18 @@ endif
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 '''
 
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+depends = ['Shougo/neosnippet.vim']
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+nnoremap + :NERDTreeToggle<Enter>
+'''

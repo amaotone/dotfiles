@@ -1,7 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification/scripts'
 let g:netrw_dirhist_2='/Users/amane/src/github.com/amaotone/dotfiles/.config/nvim/snippets'
 let g:netrw_dirhist_3='/Users/amane/src/github.com/amaotone/dotfiles/.config/nvim'
 let g:netrw_dirhist_4='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification/.git'
 let g:netrw_dirhist_5='/Users/amane/src/github.com/amaotone/dotfiles/.config/nvim'
+let g:netrw_dirhist_6='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification/utils'
+let g:netrw_dirhist_7='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification/.git'
+let g:netrw_dirhist_8='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification'
+let g:netrw_dirhist_9='/Users/amane/src/github.com/amaotone/plasticc-astronomical-classification/.git'

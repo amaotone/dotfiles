@@ -23,6 +23,7 @@ set history=5000
 set backupcopy=yes
 set vb t_vb=
 set novisualbell
+set cursorline
 inoremap jk <Esc>
 
 " 検索
