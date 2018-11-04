@@ -1,3 +1,5 @@
+let mapleader = ","
+
 " エンコーディング
 set encoding=utf-8
 scriptencoding utf-8
@@ -62,6 +64,11 @@ nnoremap <Space>bb :b#<CR>
 nnoremap <Space>bf :bf<CR>
 nnoremap <Space>bl :bl<CR>
 nnoremap <Space>bd :bp<bar>bd#<CR>
+
+" quickfix
+map <C-n> :cnext<CR>
+map <C-p> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " バックスペースでの削除を有効に
 set backspace=indent,eol,start
