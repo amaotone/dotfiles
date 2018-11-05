@@ -1,5 +1,3 @@
-" Author: Amane Suzuki
-
 syntax on
 
 " エンコーディング
