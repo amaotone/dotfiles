@@ -1,0 +1,5 @@
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'lepture/vim-jinja'

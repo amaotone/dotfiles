@@ -24,3 +24,7 @@ indent_size = 2
 [*.{json,yaml,toml,yml,tml}]
 tab_width = 2
 indent_size = 2
+
+[*.html]
+tab_width = 2
+indent_size = 2

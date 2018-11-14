@@ -20,6 +20,7 @@ depends = ['zchee/deoplete-jedi']
 repo = 'tell-k/vim-autopep8'
 on_ft = 'python'
 hook_add = '''
+let g:autopep8_ignore="E501,E402"
 function! Preserve(command)
     let search = @/
     let cursor_position = getpos('.')
@@ -33,7 +34,7 @@ function! Preserve(command)
     call setpos('.', cursor_position)
 endfunction
 function! Autopep8()
-    call Preserve(':silent %!autopep8 --ignore=E501 -')
+    call Preserve(':silent %!autopep8 --ignore=E501,E402 -')
 endfunction
 nnoremap <S-f> :call Autopep8()<CR>
 autocmd BufWrite *.{py} :call Autopep8()

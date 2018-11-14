@@ -91,7 +91,7 @@ repo = 'jiangmiao/auto-pairs'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-nnoremap + :NERDTreeToggle<Enter>
+nnoremap : :NERDTreeToggle<Enter>
 '''
 
 [[plugins]]
@@ -103,3 +103,9 @@ repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'

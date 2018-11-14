@@ -1,7 +1,9 @@
 let mapleader = ","
+set lazyredraw
+set synmaxcol=128
+syntax sync minlines=256
 
-" エンコーディング
-set encoding=utf-8
+" エンコーディング set encoding=utf-8
 scriptencoding utf-8
 set fileencodings=utf-8
 
@@ -19,7 +21,7 @@ set expandtab
 set nobackup
 set noswapfile
 set hidden
-set scrolloff=3
+set scrolloff=5
 set showcmd
 set history=5000
 set backupcopy=yes
@@ -41,6 +43,16 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" 見たまま移動
+nnoremap j gj
+nnoremap k gk
+nnoremap 0 g0
+nnoremap $ g$
+
+" for US
+nnoremap ; :
+nnoremap : ;
 
 " 置換
 nnoremap gs  :<C-u>%s///g<Left><Left><Left>
@@ -124,6 +136,7 @@ if dein#load_state('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
   call dein#load_toml('~/.config/nvim/dein_python.toml', {'on_ft': 'python'})
   call dein#load_toml('~/.config/nvim/dein_go.toml', {'on_ft': 'go'})
+  call dein#load_toml('~/.config/nvim/dein_html.toml', {'on_ft': 'html'})
   call dein#end()
   call dein#save_state()
 endif
