@@ -91,7 +91,7 @@ aliases['vv'] = 'vi ~/.vimrc'
 aliases['vz'] = 'vi ~/.zshrc'
 
 # 見た目
-$PROMPT = "\n{BOLD_BLUE}"+get_git_user()+" {BOLD_INTENSE_YELLOW}{cwd}{branch_color}{curr_branch: {}}{BOLD_GREEN} ❯ "
+$PROMPT = lambda: "\n{BOLD_BLUE}"+get_git_user()+" {BOLD_INTENSE_YELLOW}{cwd}{branch_color}{curr_branch: {}}{BOLD_GREEN} ❯ "
 $RIGHT_PROMPT = "\n{gitstatus: {} }"
 $PTK_STYLE_OVERRIDES={
     "completion-menu": "bg:ansiblack ansiwhite",
