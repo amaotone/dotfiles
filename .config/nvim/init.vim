@@ -109,9 +109,12 @@ set clipboard+=unnamed
 inoremap <silent> <esc> <esc>
 inoremap <silent> <c-[> <esc>
 
+" xonshrc
+au BufNewFile,BufRead *.py,*.pyw,.pythonstartup,.pythonrc,*.ptl,.xonshrc  setf python
+
 " ----- dein settings start -----
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim/bin/python'
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
 if has('nvim')
 if &compatible
   set nocompatible

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-DOT_DIRECTORY="${HOME}/src/github.com/amaotone/dotfiles"
+DOT_DIRECTORY="${HOME}/dotfiles"
 
 usage() {
   name=`basename $0`
