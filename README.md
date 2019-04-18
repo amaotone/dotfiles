@@ -1,7 +1,6 @@
 # dotfiles
 
 ```
-$ ghq get amaotone/dotfiles
-$ ghq look dotfiles
-$ ./deploy.sh -f
+~ $ git clone https://github.com/amaotone/dotfiles.git; cd dotfiles
+dotfiles $ ./deploy.sh -f
 ```
