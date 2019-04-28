@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from prompt_toolkit.keys import Keys
 from prompt_toolkit.filters import (Condition, IsMultiline, HasSelection, EmacsInsertMode, ViInsertMode)
 
@@ -17,6 +18,8 @@ $HISTCONTROL = 'ignoredups'
 xontrib load z
 xontrib load docker_tabcomplete
 xontrib load fzf-widgets
+xontrib load readable-traceback
+xontrib load direnv
 
 # パス
 $GOPATH = $HOME
@@ -55,10 +58,21 @@ def get_ssh():
 def get_git_user():
     return $(git config user.name).strip()
 
+# @events.on_chdir
+# def direnv(olddir, newdir, **kwargs):
+#     r = !(direnv export json)
+#     r.end()
+#     if len(r.output) > 0:
+#         lines = json.loads(r.output)
+#         for k, v in lines.items():
+#             if v is None:
+#                 del(__xonsh__.env[k])
+#             else:
+#                 __xonsh__.env[k] = v
+
 # キーバインド
 @events.on_ptk_create
 def custom_keybindings(bindings, **kw):
-    # ptk 2.xでは @bindings.add('c-v') とする
     # コマンド入力中にctrl+vでvim編集
     @bindings.add('c-v')
     def edit_in_editor(event):
@@ -89,6 +103,9 @@ aliases['vt'] = 'vi ~/.tmux.conf'
 aliases['vx'] = 'vi ~/.xonshrc'
 aliases['vv'] = 'vi ~/.vimrc'
 aliases['vz'] = 'vi ~/.zshrc'
+aliases['sx'] = 'source ~/.xonshrc'
+aliases['git_private'] = 'git config --local user.name "amaotone"; git config --local user.email "amane.suzu@gmail.com"'
+aliases['git_dena'] = 'git config --local user.name "Amane Suzuki"; git config --local user.email "amane.suzuki@dena.com"'
 
 # 見た目
 $PROMPT = lambda: "\n{BOLD_BLUE}"+get_git_user()+" {BOLD_INTENSE_YELLOW}{cwd}{branch_color}{curr_branch: {}}{BOLD_GREEN} ❯ "
