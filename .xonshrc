@@ -50,7 +50,7 @@ aliases['git_dena'] = 'git config --local user.name "Amane Suzuki"; git config -
 # プロンプト
 # green: #81D674
 # red: #E38692
-# blue: #8BA7D5
+# blue: #6CB9DA
 # yellow: #FFF280
 
 def _get_git_user():
@@ -67,15 +67,14 @@ def _success_color():
         return "{#FFF280}"  # success
 $PROMPT_FIELDS["success_color"] = _success_color
 
-$XONSH_APPEND_NEWLINE = True
-$PROMPT = lambda: "\n{success_color}┌{BOLD_#FFF280}[ {cwd} ]{#8BA7D5}{gituser: {}}{gitstatus: {}}\n{success_color}└➤ "
-$RIGHT_PROMPT = "\n{#8BA7D5}{user}@{hostname}"
-$XONSH_GITSTATUS_BRANCH = "{#81D674}"
-$XONSH_GITSTATUS_OPERATION = "{#8BA7D5}"
-$XONSH_GITSTATUS_STAGED = "{RED}●"
-$XONSH_GITSTATUS_CONFLICTS = "{RED}×"
-$XONSH_GITSTATUS_CHANGED = "{#8BA7D5}+"
-$XONSH_GITSTATUS_UNTRACKED = "{WHITE}…"
-$XONSH_GITSTATUS_STASHED = "{WHITE}⚑"
-$XONSH_GITSTATUS_AHEAD = "{WHITE}↑"
-$XONSH_GITSTATUS_BEHIND = "{WHITE}↓"
+$PROMPT = lambda: "\n{success_color}┌{BOLD_BOLD_#FFF280}[ {cwd} ]{BOLD_#6CB9DA}{gituser: {}}{gitstatus: {}}\n{success_color}└➤ "
+$RIGHT_PROMPT = "\n{BOLD_#999999}{user}@{hostname}"
+$XONSH_GITSTATUS_BRANCH = "{BOLD_#81D674}"
+$XONSH_GITSTATUS_OPERATION = "{BOLD_#6CB9DA}"
+$XONSH_GITSTATUS_STAGED = "{BOLD_RED}●"
+$XONSH_GITSTATUS_CONFLICTS = "{BOLD_RED}×"
+$XONSH_GITSTATUS_CHANGED = "{BOLD_#6CB9DA}+"
+$XONSH_GITSTATUS_UNTRACKED = "{BOLD_#999999}…"
+$XONSH_GITSTATUS_STASHED = "{BOLD_WHITE}⚑"
+$XONSH_GITSTATUS_AHEAD = "{BOLD_WHITE}↑"
+$XONSH_GITSTATUS_BEHIND = "{BOLD_WHITE}↓"
