@@ -48,6 +48,11 @@ aliases['git_private'] = 'git config --local user.name "amaotone"; git config --
 aliases['git_dena'] = 'git config --local user.name "Amane Suzuki"; git config --local user.email "amane.suzuki@dena.com"'
 
 # プロンプト
+# green: #81D674
+# red: #E38692
+# blue: #8BA7D5
+# yellow: #FFF280
+
 def _get_git_user():
     """Gitのユーザー名を表示するフィールド"""
     user = $(git config user.name).strip()
@@ -57,20 +62,20 @@ $PROMPT_FIELDS["gituser"] = _get_git_user
 def _success_color():
     """最後のコマンドが成功したかで色を変える"""
     if __xonsh__.history.rtns and __xonsh__.history.rtns[-1] != 0:
-        return "{RED}"  # fail
+        return "{#E38692}"  # fail
     else:
-        return "{INTENSE_YELLOW}"  # success
+        return "{#FFF280}"  # success
 $PROMPT_FIELDS["success_color"] = _success_color
 
 $XONSH_APPEND_NEWLINE = True
-$PROMPT = lambda: "\n{success_color}┌{BOLD_INTENSE_YELLOW}[ {cwd} ]{CYAN}{gituser: {}}{gitstatus: {}}\n{success_color}└▶ "
-$RIGHT_PROMPT = "\n{CYAN}{user}@{hostname}"
-$XONSH_GITSTATUS_BRANCH = "{GREEN}"
-$XONSH_GITSTATUS_OPERATION = "{CYAN}"
+$PROMPT = lambda: "\n{success_color}┌{BOLD_#FFF280}[ {cwd} ]{#8BA7D5}{gituser: {}}{gitstatus: {}}\n{success_color}└➤ "
+$RIGHT_PROMPT = "\n{#8BA7D5}{user}@{hostname}"
+$XONSH_GITSTATUS_BRANCH = "{#81D674}"
+$XONSH_GITSTATUS_OPERATION = "{#8BA7D5}"
 $XONSH_GITSTATUS_STAGED = "{RED}●"
 $XONSH_GITSTATUS_CONFLICTS = "{RED}×"
-$XONSH_GITSTATUS_CHANGED = "{CYAN}+"
+$XONSH_GITSTATUS_CHANGED = "{#8BA7D5}+"
 $XONSH_GITSTATUS_UNTRACKED = "{WHITE}…"
 $XONSH_GITSTATUS_STASHED = "{WHITE}⚑"
-$XONSH_GITSTATUS_AHEAD = "{WHITE}↑·"
-$XONSH_GITSTATUS_BEHIND = "{WHITE}↓·"
+$XONSH_GITSTATUS_AHEAD = "{WHITE}↑"
+$XONSH_GITSTATUS_BEHIND = "{WHITE}↓"
