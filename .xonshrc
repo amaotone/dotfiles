@@ -10,11 +10,11 @@ $INDENT = "    "
 $CASE_SENSITIVE_COMPLETIONS = True
 $COMPLETIONS_CONFIRM = True
 $AUTO_CD = True
-$HISTCONTROL = 'ignoredups'
-$XONSH_SHOW_TRACEBACK = True
+$HISTCONTROL = {"ignoredups", "ignoreerr"}
+$XONSH_SHOW_TRACEBACK = False
 $XONSH_HISTORY_MATCH_ANYWHERE = True
-$XONSH_STORE_STDOUT = True
 $XONSH_AUTOPAIR = True
+$XONSH_TRACEBACK_LOGFILE = None
 
 # xontribs
 xontrib load z
@@ -35,9 +35,6 @@ PATHS = [
 for path in PATHS:
     $PATH.append(path)
 
-def get_git_user():
-    return $(git config user.name).strip()
-
 # エイリアス
 aliases['vi'] = 'nvim'
 aliases['la'] = 'ls -latr'
@@ -50,9 +47,23 @@ aliases['sx'] = 'source ~/.xonshrc'
 aliases['git_private'] = 'git config --local user.name "amaotone"; git config --local user.email "amane.suzu@gmail.com"'
 aliases['git_dena'] = 'git config --local user.name "Amane Suzuki"; git config --local user.email "amane.suzuki@dena.com"'
 
-# 見た目
+# プロンプト
+def _get_git_user():
+    """Gitのユーザー名を表示するフィールド"""
+    user = $(git config user.name).strip()
+    return user if user else None
+$PROMPT_FIELDS["gituser"] = _get_git_user
+
+def _success_color():
+    """最後のコマンドが成功したかで色を変える"""
+    if __xonsh__.history.rtns and __xonsh__.history.rtns[-1] != 0:
+        return "{RED}"  # fail
+    else:
+        return "{INTENSE_YELLOW}"  # success
+$PROMPT_FIELDS["success_color"] = _success_color
+
 $XONSH_APPEND_NEWLINE = True
-$PROMPT = lambda: "\n{BOLD_INTENSE_YELLOW}┌[ {cwd} ] {CYAN}" + get_git_user() + " {gitstatus:{}}\n{BOLD_INTENSE_YELLOW}└▶ "
+$PROMPT = lambda: "\n{success_color}┌{BOLD_INTENSE_YELLOW}[ {cwd} ]{CYAN}{gituser: {}}{gitstatus: {}}\n{success_color}└▶ "
 $RIGHT_PROMPT = "\n{CYAN}{user}@{hostname}"
 $XONSH_GITSTATUS_BRANCH = "{GREEN}"
 $XONSH_GITSTATUS_OPERATION = "{CYAN}"
