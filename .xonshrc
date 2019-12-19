@@ -28,31 +28,14 @@ $GOPATH = $HOME
 
 # パスの設定
 PATHS = [
-    join($GOPATH[0], 'bin'),
-    join($HOME, 'src/bin/google-cloud-sdk/bin'),
-    join($HOME, '.cargo/bin'),
+    join($GOPATH[0], "bin"),
+    join($HOME, "src/bin/google-cloud-sdk/bin"),
+    join($HOME, ".cargo/bin"),
 ]
 for path in PATHS:
     $PATH.append(path)
 
-# エイリアス
-aliases['vi'] = 'nvim'
-aliases['la'] = 'ls -latr'
-aliases['dc'] = 'docker compose'
-aliases['vt'] = 'vi ~/.tmux.conf'
-aliases['vx'] = 'vi ~/.xonshrc'
-aliases['vv'] = 'vi ~/.vimrc'
-aliases['vz'] = 'vi ~/.zshrc'
-aliases['sx'] = 'source ~/.xonshrc'
-aliases['git_private'] = 'git config --local user.name "amaotone"; git config --local user.email "amane.suzu@gmail.com"'
-aliases['git_dena'] = 'git config --local user.name "Amane Suzuki"; git config --local user.email "amane.suzuki@dena.com"'
-
-# プロンプト
-# green: #81D674
-# red: #E38692
-# blue: #6CB9DA
-# yellow: #FFF280
-
+# プロンプト green: #81D674 red: #E38692 blue: #6CB9DA yellow: #FFF280
 def _get_git_user():
     """Gitのユーザー名を表示するフィールド"""
     user = $(git config user.name).strip()
@@ -68,7 +51,7 @@ def _success_color():
 $PROMPT_FIELDS["success_color"] = _success_color
 
 $PROMPT = lambda: "\n{success_color}┌{BOLD_BOLD_#FFF280}[ {cwd} ]{BOLD_#6CB9DA}{gituser: {}}{gitstatus: {}}\n{success_color}└➤ "
-$RIGHT_PROMPT = "\n{BOLD_#999999}{user}@{hostname}"
+$RIGHT_PROMPT = "\n{BOLD_#6CB9DA}{user}@{hostname}"
 $XONSH_GITSTATUS_BRANCH = "{BOLD_#81D674}"
 $XONSH_GITSTATUS_OPERATION = "{BOLD_#6CB9DA}"
 $XONSH_GITSTATUS_STAGED = "{BOLD_RED}●"
@@ -78,3 +61,15 @@ $XONSH_GITSTATUS_UNTRACKED = "{BOLD_#999999}…"
 $XONSH_GITSTATUS_STASHED = "{BOLD_WHITE}⚑"
 $XONSH_GITSTATUS_AHEAD = "{BOLD_WHITE}↑"
 $XONSH_GITSTATUS_BEHIND = "{BOLD_WHITE}↓"
+
+# エイリアス
+aliases["vi"] = "nvim"
+aliases["la"] = "ls -latr"
+aliases["dc"] = "docker-compose"
+aliases["vt"] = "vi ~/.tmux.conf"
+aliases["vx"] = "vi ~/.xonshrc"
+aliases["vv"] = "vi ~/.vimrc"
+aliases["vz"] = "vi ~/.zshrc"
+aliases["sx"] = "source ~/.xonshrc"
+aliases["git_private"] = "git config --local user.name 'amaotone'; git config --local user.email 'amane.suzu@gmail.com'"
+aliases["git_dena"] = "git config --local user.name 'Amane Suzuki'; git config --local user.email 'amane.suzuki@dena.com'"
