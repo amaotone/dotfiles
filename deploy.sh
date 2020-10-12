@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_DIRECTORY=$(cd $(dirname $0); pwd)
 
 usage() {
   name=`basename $0`

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #------------------------------
 # General Option
 #------------------------------
@@ -54,26 +61,10 @@ alias ps='ps --sort=start_time'
 alias mkdir='mkdir -p'
 alias btc='ssh -i ~/.ssh/id_rsa.gcp amaotone@35.226.209.126'
 alias c='g++ -std=c++14 -Wall -g -fsanitize=undefined -D_GLIBCXX_DEBUG'
-alias fp='(){cat $1 | pbcopy}'
 alias git='hub'
 alias zshrc='vi ~/.zshrc'
-alias sant='cd ~/dev/kaggle/santander_value'
-alias od='rm -rf test;oj d'
-alias ru='rm -f a.out;rustc -o a.out $1'
-alias t='todolist'
-alias ta='todolist a'
-alias tl='todolist l'
-alias tlp='todolist l group by project'
-alias tlc='todolist l group by context'
-alias tc='todolist c'
-alias dc='docker-compose'
-eval $(thefuck --alias)
-
-function rut(){
-    rm -f a.out
-    rustc $1 -o a.out || return 1
-    oj t -i -c ./a.out
-}
+alias git_private='git config --local user.name "amaotone"; git config --local user.email "amane.suzu@gmail.com"'
+alias git_dena='git config --local user.name "Amane Suzuki"; git config --local user.email "amane.suzuki@dena.com"'
 
 #------------------------------
 # Completion
@@ -104,7 +95,6 @@ RPROMPT='${vcs_info_msg_0_}'
 #------------------------------
 if type pyenv > /dev/null 2>&1; then
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -112,50 +102,33 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 #------------------------------
 # Plugin
 #------------------------------
-if [ -e "${HOME}/.zplug" ]; then
-	source ~/.zplug/init.zsh
+source ~/.zplug/init.zsh
 
-	zplug "b4b4r07/enhancd", use:enhancd.sh
-	zplug "zsh-users/zsh-autosuggestions"
-	zplug "zsh-users/zsh-completions"
-	zplug "zsh-users/zsh-history-substring-search"
-	zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "b4b4r07/enhancd", use:enhancd.sh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "agkozak/zsh-z"
+zplug "mollifier/anyframe"
 
-	if ! zplug check; then
-		zplug install
-	fi
-	zplug load
+if ! zplug check; then
+	zplug install
 fi
+zplug load
 
-eval "$(rbenv init -)"
-
-#-----------------------------
-# Google Cloud Platform
-#-----------------------------
-export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/path.zsh.inc"
-export PATH="$PATH:/Users/amane/Downloads/google-cloud-sdk/completion.zsh.inc"
-export CLOUDSDK_PYTHON=$(which python2)
-
-# Golang
-export GOPATH="$HOME"
-export PATH="$GOPATH/bin:$PATH"
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/dev/atcoder
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/amane/Downloads/gcloud-sdk/path.zsh.inc' ]; then source '/Users/amane/Downloads/gcloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc' ]; then source '/Users/amane/Downloads/gcloud-sdk/completion.zsh.inc'; fi
-
-export PYTHONPATH="$PYTHONPATH:$HOME/dev/kaggle/spica"
-kp(){
-    docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it kaggle/python python "$@"
-}
-kj() {
-    docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
-}
+# anyframe
+# ----------------------------
+bindkey '^r' anyframe-widget-execute-history
+bindkey '^p' anyframe-widget-put-history
+bindkey '^g' anyframe-widget-cd-ghq-repository
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/src/github.com/amaotone/dotfiles/.p10k.zsh.
+[[ ! -f ~/src/github.com/amaotone/dotfiles/.p10k.zsh ]] || source ~/src/github.com/amaotone/dotfiles/.p10k.zsh
