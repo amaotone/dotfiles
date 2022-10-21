@@ -1,0 +1,75 @@
+import os
+import sys
+import json
+import re
+from os.path import join
+
+$VI_MODE = True
+$IGNOREEOF = True
+$INDENT = "    "
+$CASE_SENSITIVE_COMPLETIONS = True
+$COMPLETIONS_CONFIRM = True
+$AUTO_CD = True
+$HISTCONTROL = {"ignoredups", "ignoreerr"}
+$XONSH_SHOW_TRACEBACK = False
+$XONSH_HISTORY_MATCH_ANYWHERE = True
+$XONSH_AUTOPAIR = True
+$XONSH_TRACEBACK_LOGFILE = None
+
+# xontribs
+xontrib load z
+xontrib load docker_tabcomplete
+xontrib load fzf-widgets
+xontrib load readable-traceback
+xontrib load direnv
+
+# golang
+$GOPATH = $HOME
+
+# パスの設定
+PATHS = [
+    join($GOPATH[0], "bin"),
+    join($HOME, "src/bin/google-cloud-sdk/bin"),
+    join($HOME, ".cargo/bin"),
+]
+for path in PATHS:
+    $PATH.append(path)
+
+# プロンプト green: #81D674 red: #E38692 blue: #6CB9DA yellow: #FFF280
+def _get_git_user():
+    """Gitのユーザー名を表示するフィールド"""
+    user = $(git config user.name).strip()
+    return user if user else None
+$PROMPT_FIELDS["gituser"] = _get_git_user
+
+def _success_color():
+    """最後のコマンドが成功したかで色を変える"""
+    if __xonsh__.history.rtns and __xonsh__.history.rtns[-1] != 0:
+        return "{#E38692}"  # fail
+    else:
+        return "{#FFF280}"  # success
+$PROMPT_FIELDS["success_color"] = _success_color
+
+$PROMPT = lambda: "\n{success_color}┌{BOLD_BOLD_#FFF280}[ {cwd} ]{BOLD_#6CB9DA}{gituser: {}}{gitstatus: {}}\n{success_color}└➤ "
+$RIGHT_PROMPT = "\n{BOLD_#6CB9DA}{user}@{hostname}"
+$XONSH_GITSTATUS_BRANCH = "{BOLD_#81D674}"
+$XONSH_GITSTATUS_OPERATION = "{BOLD_#6CB9DA}"
+$XONSH_GITSTATUS_STAGED = "{BOLD_RED}●"
+$XONSH_GITSTATUS_CONFLICTS = "{BOLD_RED}×"
+$XONSH_GITSTATUS_CHANGED = "{BOLD_#6CB9DA}+"
+$XONSH_GITSTATUS_UNTRACKED = "{BOLD_#999999}…"
+$XONSH_GITSTATUS_STASHED = "{BOLD_WHITE}⚑"
+$XONSH_GITSTATUS_AHEAD = "{BOLD_WHITE}↑"
+$XONSH_GITSTATUS_BEHIND = "{BOLD_WHITE}↓"
+
+# エイリアス
+aliases["vi"] = "nvim"
+aliases["la"] = "ls -latr"
+aliases["dc"] = "docker-compose"
+aliases["vt"] = "vi ~/.tmux.conf"
+aliases["vx"] = "vi ~/.xonshrc"
+aliases["vv"] = "vi ~/.vimrc"
+aliases["vz"] = "vi ~/.zshrc"
+aliases["sx"] = "source ~/.xonshrc"
+aliases["git_private"] = "git config --local user.name 'amaotone'; git config --local user.email 'amane.suzu@gmail.com'"
+aliases["git_dena"] = "git config --local user.name 'Amane Suzuki'; git config --local user.email 'amane.suzuki@dena.com'"
