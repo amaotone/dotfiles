@@ -65,15 +65,16 @@ bindkey '^r' anyframe-widget-execute-history
 bindkey '^g' anyframe-widget-cd-ghq-repository
 
 # ----------------------------
-# gh 
+# gh
 eval "$(gh completion -s zsh)"
 
 # ----------------------------
 # m1 mac
+OPENSSL_PREFIX="$(brew --prefix openssl)"
 export OPENBLAS=$(/opt/homebrew/bin/brew --prefix openblas)
-export CPPFLAGS="-I$(brew --prefix openssl)/include"
-export CFLAGS="-I$(brew --prefix openssl)/include"
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
+export CFLAGS="-I${OPENSSL_PREFIX}/include"
+export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 
