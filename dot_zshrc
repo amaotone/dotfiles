@@ -58,6 +58,7 @@ zinit light zsh-users/zsh-history-substring-search
 zinit light supercrabtree/k
 zinit light gimbo/iterm2-tabs.zsh
 zinit light paulirish/git-open
+zinit light reegnz/jq-zsh-plugin
 
 # ----------------------------
 # anyframe
@@ -68,8 +69,6 @@ bindkey '^g' anyframe-widget-cd-ghq-repository
 # gh
 eval "$(gh completion -s zsh)"
 
-# ----------------------------
-# m1 mac
 OPENSSL_PREFIX="$(brew --prefix openssl)"
 export OPENBLAS=$(/opt/homebrew/bin/brew --prefix openblas)
 export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
@@ -77,6 +76,7 @@ export CFLAGS="-I${OPENSSL_PREFIX}/include"
 export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
+export PATH="$HOME/.asdf/installs/poetry/1.2.2/bin:$PATH"
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(starship init zsh)"
