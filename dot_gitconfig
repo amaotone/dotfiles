@@ -10,6 +10,8 @@
 	quotepath = false
 [color]
 	ui = true
+[fetch]
+	prune = true
 [credential]
 	helper = osxkeychain
 [ghq]
@@ -20,3 +22,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[alias]
+	s = status --short --branch
+	st = status
+	cm = commit
+	sw = switch
