@@ -13,7 +13,11 @@
 [fetch]
 	prune = true
 [credential]
-	helper = osxkeychain
+{{ if eq .chezmoi.os "darwin" }}
+    helper = osxkeychain
+{{ else }}
+    helper = cache
+{{ end }}
 [ghq]
     vcs = git
     root = ~/src
