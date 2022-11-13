@@ -15,6 +15,7 @@ alias git='hub'
 alias git_private='git config --local user.name "amaotone"; git config --local user.email "amane.suzu@gmail.com"'
 alias git_caddi='git config --local user.name "Amane Suzuki"; git config --local user.email "amane_suzuki@caddi.jp"'
 alias tf='terraform'
+alias ch='chezmoi'
 if [[ $(command -v exa) ]]; then
   alias ls='exa --icons --git'
   alias lt='exa -T -L 2 -a -I "node_modules|.git|.cache|.venv|__pycache__|.pytest_cache" --icons --group-directories-first'
