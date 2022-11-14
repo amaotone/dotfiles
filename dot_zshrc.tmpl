@@ -72,14 +72,22 @@ bindkey '^g' anyframe-widget-cd-ghq-repository
 # gh
 eval "$(gh completion -s zsh)"
 
-OPENSSL_PREFIX="$(brew --prefix openssl)"
-export OPENBLAS=$(/opt/homebrew/bin/brew --prefix openblas)
+{{ if eq .chezmoi.os "macos" }}
+export BREW_PREFIX="$(brew --prefix)"
+export OPENSSL_PREFIX="$(brew --prefix openssl@1.1)"
+export OPENBLAS="$(brew --prefix openblas)"
 export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
 export CFLAGS="-I${OPENSSL_PREFIX}/include"
 export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
+export CONFIGURE_OPTS="-with-openssl=${OPENSSL_PREFIX}"
+export SSH="$HOME/openssl"
+export CC="$(brew --prefix gcc@12)/bin/gcc-12"
 export PATH="$HOME/.asdf/installs/poetry/1.2.2/bin:$PATH"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+{{ else }}
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+{{ end  }}
 eval "$(starship init zsh)"
